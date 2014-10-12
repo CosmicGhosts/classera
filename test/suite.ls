@@ -36,18 +36,27 @@ describe 'classera', ->
 
     o 'Should set the properties to be configurable by default', ->
       Person = classera(@constructor)
-      tim = Person.create(name: 'tim', age: 21)
+      tim = Person.create(name: 'tim')
       nameDescriptor = Object.getOwnPropertyDescriptor(tim, 'name')
       expect(nameDescriptor.configurable).to.equal true
 
     o 'Should set the properties to be enumerable by default', ->
       Person = classera(@constructor)
-      tim = Person.create(name: 'tim', age: 21)
+      tim = Person.create(name: 'tim')
       nameDescriptor = Object.getOwnPropertyDescriptor(tim, 'name')
       expect(nameDescriptor.enumerable).to.equal true
 
     o 'Should set the properties to be writable by default', ->
       Person = classera(@constructor)
-      tim = Person.create(name: 'tim', age: 21)
+      tim = Person.create(name: 'tim')
       nameDescriptor = Object.getOwnPropertyDescriptor(tim, 'name')
       expect(nameDescriptor.writable).to.equal true
+
+    context 'when given different properties', ->
+
+      o 'Should proxy the options passed into create to the constructor', ->
+        Person = classera(@constructor)
+        tim = Person.create(age: 21)
+        expect(tim instanceof @constructor).to.equal true
+        expect(tim.age).to.equal 21
+
