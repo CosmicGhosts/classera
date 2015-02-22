@@ -1,7 +1,7 @@
 soc = require 'soc'
 
 classera = (ctor) ->
-  create: (properties) ->
+  new: (properties) ->
     descriptor = configurable: true, enumerable: true, writable: true
     properties = propertiesWithDescriptors(properties, descriptor)
     Object.create(ctor.prototype, properties)
