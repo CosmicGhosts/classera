@@ -1,6 +1,6 @@
 {
   "name": "classera",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "a simple way to wrap constructors and eliminate `new` from your code",
   "main": "./lib/index.js",
   "scripts": {
