@@ -9,6 +9,7 @@ chai = require 'chai'
 chai.use(sinonChai)
 {_extend} = require 'util'
 
+# Helpers
 o = it
 x = it.skip
 
