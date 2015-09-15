@@ -4,10 +4,10 @@
   "description": "a simple way to wrap constructors and eliminate `new` from your code",
   "main": "./lib/index.js",
   "scripts": {
-    "cc": "./node_modules/.bin/lsc -o lib -c src/*.ls",
-    "test-cc": "./node_modules/.bin/lsc -o lib-test -c test/*.ls",
+    "cc": "lsc -o lib -c linked src/*.ls",
+    "test-cc": "lsc -o lib-test -c linked test/*.ls",
     "pretest": "npm run-script cc && npm run-script test-cc",
-    "test": "./node_modules/.bin/mocha lib-test/*.js"
+    "test": "mocha lib-test/*.js"
   },
   "keywords": [
     "class creation",
@@ -16,13 +16,13 @@
   "author": "seanstrom",
   "license": "ISC",
   "devDependencies": {
-    "LiveScript": "^1.2.0",
+    "livescript": "^1.4.0",
     "chai": "^1.9.1",
     "mocha": "^1.21.4",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0"
   },
   "dependencies": {
-    "soc": "^0.1.2"
+    "soc": "^0.2.0"
   }
 }
