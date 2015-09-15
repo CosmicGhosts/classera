@@ -1,9 +1,4 @@
-soc = require 'soc'
-
-merge = (x, y) ->
-  soc(x)
-    .merge(y)
-    .unwrap!
+merge = require 'object-assign'
 
 descriptor =
   configurable: true
@@ -12,9 +7,8 @@ descriptor =
 
 propsWithDescs = (props, descriptor) ->
   propWithDesc = (prop) ->
-    "#{prop}": soc(value: props[prop])
-      .merge descriptor
-      .unwrap!
+    desc = merge value: props[prop], descriptor
+    "#{prop}": desc
 
   Object.keys props
     .map propWithDesc
