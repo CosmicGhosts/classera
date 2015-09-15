@@ -1,24 +1,28 @@
 soc = require 'soc'
 
+merge = (x, y) ->
+  soc(x)
+    .merge(y)
+    .unwrap!
+
+descriptor =
+  configurable: true
+  enumerable: true
+  writable: true
+
+propsWithDescs = (props, descriptor) ->
+  propWithDesc = (prop) ->
+    "#{prop}": soc(value: props[prop])
+      .merge descriptor
+      .unwrap!
+
+  Object.keys props
+    .map propWithDesc
+    .reduce merge, {}
+
 classera = (ctor) ->
-  create: (properties) ->
-    descriptor = configurable: true, enumerable: true, writable: true
-    properties = propertiesWithDescriptors(properties, descriptor)
-    Object.create(ctor.prototype, properties)
-
-function propertiesWithDescriptors(properties, descriptor)
-  obj = soc()
-  propsWDesc = Object.keys(properties).map propertyWithDescriptor(descriptor, properties)
-  properties = propsWDesc.reduce((previousObj, currentObj) ->
-    previousObj.extend currentObj
-  , obj).done!
-
-function propertyWithDescriptor(descriptor, properties)
-  (property) ->
-    p = {}
-    p[property] = soc(value: properties[property])
-      .extend(descriptor)
-      .done!
-    p
+  create: (props) ->
+    props = propsWithDescs props, descriptor
+    Object.create ctor.prototype, props
 
 module.exports = classera
