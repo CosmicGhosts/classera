@@ -4,8 +4,8 @@
   "description": "a simple way to wrap constructors and eliminate `new` from your code",
   "main": "./lib/index.js",
   "scripts": {
-    "cc": "lsc -o lib -c linked src/*.ls",
-    "test-cc": "lsc -o lib-test -c linked test/*.ls",
+    "cc": "lsc -o lib -c src/*.ls",
+    "test-cc": "lsc -o lib-test -c test/*.ls",
     "pretest": "npm run-script cc && npm run-script test-cc",
     "test": "mocha lib-test/*.js"
   },
